@@ -34,3 +34,5 @@ Raw provider evidence is saved under the ignored `.data/evidence/` folder and is
 - The built public API returned HTTP 403 for both GET and POST before accessing server state. The build was started without a runtime public flag, verifying the build-time guard remains effective.
 - Scanned all 11 emitted public static files against the private CALL-E key and volunteer number and token patterns: no matches.
 - Browser walkthrough verified a scripted acceptance, required staff confirmation and persistence after reload. No real call was created during deployment testing.
+
+The public deployment at https://clinic-slot-assistant.vercel.app/ returned HTTP 200 without authentication. Both GET and POST to its workspace endpoint returned 403. A deployed acceptance simulation, staff confirmation and persistence after reload were verified in the browser.

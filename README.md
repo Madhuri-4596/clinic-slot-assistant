@@ -33,6 +33,8 @@ State survives refresh and server restart in `.data/sessions/`, keyed by an Http
 
 ## Public demo on Vercel
 
+**[Open the public interactive demo](https://clinic-slot-assistant.vercel.app/)** — no login or credentials required; all calls are simulated.
+
 Import this GitHub repository into Vercel as a Next.js project. The checked-in `vercel.json` runs `npm run build:demo`; no environment variables, API keys, phone numbers, or database are needed. Use Node.js 22.x or newer.
 
 The public build stores a small journal of fictional actions in each visitor's browser localStorage. Refresh preserves that visitor's progress. **Reset demo** clears it and creates new appointment dates. Clearing browser storage also resets the demo. Visitors do not share a workspace, and no real patient records can be entered. If browser storage is blocked, enable it for the site to use the demo.
