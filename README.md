@@ -6,7 +6,7 @@ A CALL-E hackathon prototype by Madhuri Gade. Choose a cancelled appointment, pr
 
 The local application includes a working, labelled simulation with four outcomes: acceptance, refusal, uncertainty, and no answer. A server-side CALL-E SDK adapter supports one authorized India test volunteer. **The live integration was verified on 12 September 2026:** after an initial attempt reached screening, an explicitly requested second call connected to the volunteer, returned `can_attend: yes`, and completed staff review and a fictional booking in the app. No real clinic calendar is connected. All example names, appointments, consent records, and demo transcripts are fictional; locally retained live-test transcripts are private and excluded from the source bundle.
 
-The Devpost entry is a draft. A public contribution PR, an actual demonstration video, and the final submission are still required.
+The Devpost entry is a draft. The organizer contribution is open as [PR #505](https://github.com/CALLE-AI/awesome-phone-call-agents/pull/505). The demonstration video and final submission are still required.
 
 ## Run locally
 
@@ -30,6 +30,23 @@ The server binds to loopback. This is a single-process local prototype, not a pr
 5. Review the updated board and activity log. **Reset demo** starts a new fictional workspace.
 
 State survives refresh and server restart in `.data/sessions/`, keyed by an HttpOnly SameSite cookie. The directory is ignored by Git. Do not put real patient information into the prototype. Deleting the session cookie creates a new workspace; live call history must be reconciled in CALL-E before any repeated test.
+
+## Public demo on Vercel
+
+Import this GitHub repository into Vercel as a Next.js project. The checked-in `vercel.json` runs `npm run build:demo`; no environment variables, API keys, phone numbers, or database are needed. Use Node.js 22.x or newer.
+
+The public build stores a small journal of fictional actions in each visitor's browser localStorage. Refresh preserves that visitor's progress. **Reset demo** clears it and creates new appointment dates. Clearing browser storage also resets the demo. Visitors do not share a workspace, and no real patient records can be entered. If browser storage is blocked, enable it for the site to use the demo.
+
+Public mode is baked into the build; Vercel also forces it independently. Both server workspace endpoints reject requests before reading local files or settings, and the CALL-E adapter is disabled. Even accidentally configured credentials cannot enable live calls on Vercel. Do not add credentials to Vercel. The live-testing code remains available only for the explicitly approved local workflow below.
+
+To preview this same public build locally:
+
+```sh
+npm run build:demo
+npm start
+```
+
+Run `npm run build` again to restore a regular local build. Public hosting demonstrates scripted outcomes; it does not claim that the hosted site makes CALL-E calls. The local adapter and its setup instructions are included so judges can inspect or reproduce the integration with their own consenting volunteer.
 
 ## Connect CALL-E for one real test
 
@@ -59,8 +76,8 @@ To stop *future* calls, set `CALLE_LIVE_ENABLED=false` and restart. This does no
 
 ```sh
 npm test
-npm run typecheck
 npm run build
+npm run typecheck
 ```
 
 Tests cover outcome handling, required consent, idempotency, duplicate invitations, conflicting bookings, expired slots, interrupted live creation, provider-result parsing, and request-origin checks. Provider parsing uses fixtures, so these checks do not place calls or prove a live CALL-E integration.
@@ -68,8 +85,8 @@ Tests cover outcome handling, required consent, idempotency, duplicate invitatio
 ## Remaining hackathon work
 
 - Completed: account configuration and an explicitly authorized live test with an accepted response.
-- Capture screenshots and a roughly three-minute public demonstration video, clearly distinguishing simulated footage from an actual call.
-- Prepare a contribution under the organizer's `apps/typescript/` directory, follow its latest contribution requirements, and open a public PR after review.
+- Capture screenshots and a public demonstration video under three minutes, clearly distinguishing simulated footage from an actual call.
+- Completed: public organizer contribution [PR #505](https://github.com/CALLE-AI/awesome-phone-call-agents/pull/505), awaiting organizer review.
 - Add the PR URL, video URL, CALL-E account email, and accurate project story to the Devpost draft; submit before the deadline.
 
 Official sources:

@@ -39,3 +39,6 @@ Record an actual demonstration, prepare the contribution PR, and add the resulti
 ## Built with
 
 Next.js, React, TypeScript, Node.js, CSS, CALL-E SDK.
+
+
+Public deployment preparation: a simulation-only Vercel build uses per-browser fictional state, blocks server workspace actions, and never requires CALL-E credentials. Organizer contribution: https://github.com/CALLE-AI/awesome-phone-call-agents/pull/505. Public URL will be added after deployment verification.
